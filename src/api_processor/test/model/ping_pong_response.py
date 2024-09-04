@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from salilvnair.api_processor.model.rest_ws_response import RestWebServiceResponse
+from src.api_processor.model.rest_ws_response import RestWebServiceResponse
 
 
 @dataclass

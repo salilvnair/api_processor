@@ -2,7 +2,7 @@ import time
 import logging
 from typing import Callable, List, Optional
 
-from salilvnair.api_processor.helper.retry.retry_executor_ex import RetryExecutorException
+from src.api_processor.helper.retry.retry_executor_ex import RetryExecutorException
 
 
 # class RetryExecutor:
@@ -74,6 +74,17 @@ class RetryExecutor:
         self._max_retries = 0
         self._delay = 0
         self._white_listed_exceptions: Optional[List[str]] = []
+        self.logger = logging.getLogger(self.__class__.__name__)
+        self.logger.setLevel(logging.INFO)  # Set the logging level to INFO
+        # Create a console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.INFO)
+
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        console_handler.setFormatter(formatter)
+
+        # Add the handler to the logger
+        self.logger.addHandler(console_handler)
 
     def max_retries(self, retries: int):
         self._max_retries = retries
@@ -102,12 +113,12 @@ class RetryExecutor:
             if self._white_listed_exceptions:
                 if not any(exc in str(e1) for exc in self._white_listed_exceptions):
                     retry_executor_msg = "FAILED will not be retried as the exception is not whitelisted"
-                    logging.error(f"{retry_executor_msg} ex: {e1}")
+                    self.logger.error(f"{retry_executor_msg} ex: {e1}")
                     raise RetryExecutorException(original_exception=e1, retry_executor_message=retry_executor_msg,
                                                  exception_message=str(e1))
 
-            logging.error(str(e1))
-            logging.error(
+            self.logger.error(str(e1))
+            self.logger.error(
                 f"FAILED will be retried {self._max_retries} times after a delay of {self._delay / 1000} seconds.")
             return self._retry(func)
 
@@ -121,10 +132,10 @@ class RetryExecutor:
                 return func()
             except Exception as ex:
                 retry_counter += 1
-                logging.error(str(ex))
-                logging.error(f"FAILED on retry {retry_counter} of {self._max_retries}")
+                self.logger.error(str(ex))
+                self.logger.error(f"FAILED on retry {retry_counter} of {self._max_retries}")
                 if retry_counter >= self._max_retries:
-                    logging.error("Max retries exceeded.")
+                    self.logger.error("Max retries exceeded.")
                     exception = ex
                     break
         if exception is None:
@@ -137,9 +148,6 @@ class RetryExecutor:
 
 # Example usage
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-
-
     def faulty_function():
         raise RuntimeError("This is a test exception")
 

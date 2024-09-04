@@ -2,9 +2,9 @@ import json
 import logging
 from typing import Dict, Any
 
-from salilvnair.api_processor.exception.rest_ws_exception import RestWebServiceException
-from salilvnair.api_processor.interface.rest_ws_handler import RestWebServiceHandler
-from salilvnair.api_processor.helper.retry.retry_executor import RetryExecutor, RetryExecutorException
+from src.api_processor.exception.rest_ws_exception import RestWebServiceException
+from src.api_processor.interface.rest_ws_handler import RestWebServiceHandler
+from src.api_processor.helper.retry.retry_executor import RetryExecutor, RetryExecutorException
 from dataclasses import asdict
 
 

@@ -1,7 +1,7 @@
 import requests
 from typing import Dict, Any, List
-from salilvnair.api_processor.interface.rest_ws_delegate import RestWebServiceDelegate, TimeUnit
-from salilvnair.api_processor.test.model.ping_pong_response import PingPongResponse
+from src.api_processor.interface.rest_ws_delegate import RestWebServiceDelegate, TimeUnit
+from src.api_processor.test.model.ping_pong_response import PingPongResponse
 
 
 class PingPongWSDelegate(RestWebServiceDelegate):
