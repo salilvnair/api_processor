@@ -1,6 +1,6 @@
 import logging
-from src.api_processor.facade.rest_ws_facade import RestWebServiceFacade
-from src.api_processor.test.handler.ping_pong_ws_handler import PingPongWsHandler
+from api_processor.facade.rest_ws_facade import RestWebServiceFacade
+from api_processor.test.handler.ping_pong_ws_handler import PingPongWsHandler
 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)

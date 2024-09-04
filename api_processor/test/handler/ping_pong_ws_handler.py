@@ -1,7 +1,7 @@
-from src.api_processor.interface.rest_ws_handler import RestWebServiceHandler
-from src.api_processor.test.delegate.ping_pong_ws_delegate import PingPongWSDelegate
-from src.api_processor.test.model.ping_pong_request import PingPongRequest
-from src.api_processor.test.model.ping_pong_response import PingPongResponse
+from api_processor.interface.rest_ws_handler import RestWebServiceHandler
+from api_processor.test.delegate.ping_pong_ws_delegate import PingPongWSDelegate
+from api_processor.test.model.ping_pong_request import PingPongRequest
+from api_processor.test.model.ping_pong_response import PingPongResponse
 
 
 class PingPongWsHandler(RestWebServiceHandler):

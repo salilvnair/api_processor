@@ -2,7 +2,7 @@ import time
 import logging
 from typing import Callable, List, Optional
 
-from src.api_processor.helper.retry.retry_executor_ex import RetryExecutorException
+from api_processor.helper.retry.retry_executor_ex import RetryExecutorException
 
 
 # class RetryExecutor:

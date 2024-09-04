@@ -2,9 +2,9 @@ import json
 import logging
 from typing import Dict, Any
 
-from src.api_processor.exception.rest_ws_exception import RestWebServiceException
-from src.api_processor.interface.rest_ws_handler import RestWebServiceHandler
-from src.api_processor.helper.retry.retry_executor import RetryExecutor, RetryExecutorException
+from api_processor.exception.rest_ws_exception import RestWebServiceException
+from api_processor.interface.rest_ws_handler import RestWebServiceHandler
+from api_processor.helper.retry.retry_executor import RetryExecutor, RetryExecutorException
 from dataclasses import asdict
 
 

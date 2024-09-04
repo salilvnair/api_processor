@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from src.api_processor.model.rest_ws_request import RestWebServiceRequest
+from api_processor.model.rest_ws_request import RestWebServiceRequest
 
 
 @dataclass
