@@ -2,7 +2,7 @@ import time
 import logging
 from typing import Callable, List, Optional
 
-from com.salilvnair.api_processor.helper.retry.retry_executor_ex import RetryExecutorException
+from salilvnair.api_processor.helper.retry.retry_executor_ex import RetryExecutorException
 
 
 # class RetryExecutor:

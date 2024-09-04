@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from com.salilvnair.api_processor.interface.rest_ws_delegate import RestWebServiceDelegate
+from salilvnair.api_processor.interface.rest_ws_delegate import RestWebServiceDelegate
 
 
 class RestWebServiceHandler(ABC):

@@ -2,9 +2,9 @@ import json
 import logging
 from typing import Dict, Any
 
-from com.salilvnair.api_processor.exception.rest_ws_exception import RestWebServiceException
-from com.salilvnair.api_processor.interface.rest_ws_handler import RestWebServiceHandler
-from com.salilvnair.api_processor.helper.retry.retry_executor import RetryExecutor, RetryExecutorException
+from salilvnair.api_processor.exception.rest_ws_exception import RestWebServiceException
+from salilvnair.api_processor.interface.rest_ws_handler import RestWebServiceHandler
+from salilvnair.api_processor.helper.retry.retry_executor import RetryExecutor, RetryExecutorException
 from dataclasses import asdict
 
 
@@ -33,7 +33,7 @@ class RestWebServiceFacade:
         if not handler.empty_payload():
             request = handler.prepare_request(rest_ws_map, *objects)
             if handler.print_logs():
-                self.print_logs(request, handler, self.REQUEST)
+                self.print_logs(request_response=request, handler=handler, log_type=self.REQUEST)
 
         delegate = handler.delegate()
         if delegate is None:
@@ -44,17 +44,17 @@ class RestWebServiceFacade:
         if delegate.retry():
             try:
                 response = RetryExecutor() \
-                    .max_retries(delegate.max_retries()) \
-                    .delay(delegate.delay(), delegate.delay_time_unit().value) \
-                    .configure(delegate.white_listed_exceptions()) \
-                    .execute(lambda: delegate.invoke(request, rest_ws_map, *objects))
+                            .max_retries(delegate.max_retries()) \
+                            .delay(delegate.delay(), delegate.delay_time_unit().value) \
+                            .configure(delegate.white_listed_exceptions()) \
+                            .execute(lambda: delegate.invoke(request, rest_ws_map, *objects))
             except RetryExecutorException as e:
                 raise RestWebServiceException(f"Failed to execute retries for {handler.web_service_name()}") from e
         else:
             response = delegate.invoke(request, rest_ws_map, *objects)
 
         if handler.print_logs():
-            self.print_logs(response, handler, self.RESPONSE)
+            self.print_logs(request_response=response, handler=handler, log_type=self.RESPONSE)
 
         handler.process_response(request, response, rest_ws_map, *objects)
 

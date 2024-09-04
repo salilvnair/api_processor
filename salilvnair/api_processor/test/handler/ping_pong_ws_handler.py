@@ -1,7 +1,7 @@
-from com.salilvnair.api_processor.interface.rest_ws_handler import RestWebServiceHandler
-from com.salilvnair.api_processor.test.delegate.ping_pong_ws_delegate import PingPongWSDelegate
-from com.salilvnair.api_processor.test.model.ping_pong_request import PingPongRequest
-from com.salilvnair.api_processor.test.model.ping_pong_response import PingPongResponse
+from salilvnair.api_processor.interface.rest_ws_handler import RestWebServiceHandler
+from salilvnair.api_processor.test.delegate.ping_pong_ws_delegate import PingPongWSDelegate
+from salilvnair.api_processor.test.model.ping_pong_request import PingPongRequest
+from salilvnair.api_processor.test.model.ping_pong_response import PingPongResponse
 
 
 class PingPongWsHandler(RestWebServiceHandler):
